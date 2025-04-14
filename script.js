@@ -215,19 +215,25 @@ export class Tree {
       }
       return count++;
     };
-    return findDepth(node.data);
+    return findDepth(node.data, this.root);
   }
 
   isBalanced() {
     const array = [];
+
+    const findHeight = (currentNode) => {
+      if (!currentNode) return -1;
+      const leftHeight = findHeight(currentNode.left);
+      const rightHeight = findHeight(currentNode.right);
+      return Math.max(leftHeight, rightHeight) + 1;
+    };
 
     const checkBalance = (currentNode, array) => {
       if (!currentNode) return currentNode;
 
       const left = checkBalance(currentNode.left, array);
       const right = checkBalance(currentNode.right, array);
-
-      if (Math.abs(this.height(left) - this.height(right)) > 1) {
+      if (Math.abs(findHeight(left) - findHeight(right)) > 1) {
         array.push(false);
       }
       return currentNode;
