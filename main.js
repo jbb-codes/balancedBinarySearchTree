@@ -1,11 +1,5 @@
 import { Tree } from "./script.js";
 
-// const randomArray = (min, max, n = 1) => {
-//   Array.from({ length: n }, () => {
-//     Math.floor(Math.random() * (max - min + 1)) + min;
-//   });
-// };
-
 function getRandomArray(length, min, max) {
   const randomArray = [];
   for (let i = 0; i < length; i++) {
@@ -16,10 +10,7 @@ function getRandomArray(length, min, max) {
 }
 
 const randomArray = getRandomArray(25, 1, 100);
-
-// console.log(randArr);
-// let arr = [1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324];
-
+randomArray.push(100, 101, 102, 104, 105);
 const tree = new Tree(randomArray);
 
 const prettyPrint = (node, prefix = "", isLeft = true) => {
@@ -35,5 +26,8 @@ const prettyPrint = (node, prefix = "", isLeft = true) => {
   }
 };
 
-prettyPrint(tree.root);
-// tree.isBalanced();
+console.log(randomArray);
+tree.levelOrder((a) => {
+  console.table(a);
+});
+// prettyPrint(tree.rebalance());
